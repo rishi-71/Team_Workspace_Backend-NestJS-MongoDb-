@@ -1,3 +1,11 @@
 # Project Initialization 
     initiated project with nest new team-workspace-backend
-    
+
+#Creating Workspaces module 
+    first build a module using nest generate module worksapces , then build services and controller using NestJS/cli then in service.ts created a simple function to check , then controller me constructor build krke us service ke function ko call kra then check in folders module.ts ki controller and services mentioned h ya nhi then make sure to check in main app.module in modules imports we hace workspacesModule     
+
+#Connection databse
+    first installs required packages : npm install @nestjs/mongoose mongoose and npm install @nestjs/config 
+    then connection setup , in main app.module in imports we insert MongooseModule.forRoot("mongourl if local or mongo vairable using process.env if env is present")
+   
+    #Defined the Schema = then we have defined the schema of workspace we build a folder inside woekspaces called schemas then in that folder I created woekspace.schema.ts and inside it  I defined the schema using prop, schema and document,schemaFactory, then I gegister the schema in the workspace module in imports we insert MongooseModule.forFeature([{name: Wirkspace.name , schema:WorkspaceSchema}])
