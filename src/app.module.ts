@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -16,7 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGODB_URI'),
       }),
-     })],
+     }), AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
