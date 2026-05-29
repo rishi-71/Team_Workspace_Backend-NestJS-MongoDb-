@@ -23,3 +23,6 @@
 
 #Create Dto & validation pipes
     The problem was if a user sends any post request in which there is no name property according to our schema and can have any other property so in that case our system allows it to database that is not a good thing so we have to apply some rules , so to make them first we create a folder named dto inside our src directory then in that folder we created a file named workspace.schema.dto.ts where we created a class named CreateWorkspaceDto where we apply rules by mentioning @IsString and similar to that then in controller in post request firstly we had body type set to any now it follows CreateWorkspaceDto instead of any then in main.ts we created a security guard with the use of validationpipes.
+
+#Implemented Error handling filtering
+    so as of now if any error happens form mongo side then it will display a raw error to user which can cause security risk so we created a scenerio where we change name to unique in schema , and we create a filter so user can see a proper message like what happend so we created a folder common inside src , in common we another folder filter in side filter folder a file named mongo-exception where we write logic to handle the same name error and in main.ts we added it 
