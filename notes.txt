@@ -19,3 +19,7 @@
         }),
     }),
     inside app.module and in imports array[]    
+
+
+#Create Dto & validation pipes
+    The problem was if a user sends any post request in which there is no name property according to our schema and can have any other property so in that case our system allows it to database that is not a good thing so we have to apply some rules , so to make them first we create a folder named dto inside our src directory then in that folder we created a file named workspace.schema.dto.ts where we created a class named CreateWorkspaceDto where we apply rules by mentioning @IsString and similar to that then in controller in post request firstly we had body type set to any now it follows CreateWorkspaceDto instead of any then in main.ts we created a security guard with the use of validationpipes.
