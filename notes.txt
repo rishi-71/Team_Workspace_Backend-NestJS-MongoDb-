@@ -9,3 +9,13 @@
     then connection setup , in main app.module in imports we insert MongooseModule.forRoot("mongourl if local or mongo vairable using process.env if env is present")
    
     #Defined the Schema = then we have defined the schema of workspace we build a folder inside woekspaces called schemas then in that folder I created woekspace.schema.ts and inside it  I defined the schema using prop, schema and document,schemaFactory, then I gegister the schema in the workspace module in imports we insert MongooseModule.forFeature([{name: Wirkspace.name , schema:WorkspaceSchema}])
+
+#Created get and post api
+    created a post api to insert data into our database in this we can insert a workspace by name,description,status then we created a get api inside which we get an array of inserted data from the database, also I encounters with an error where my database not get connected so the problem was I used mongoatlas so a cloud and while the time of running it not gets connected and system gets undefined instead of a mongodb url so to fix this I have to make some changes inside the app.module file where I needed to use MongooseModule.forRootAsync({
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: async (configService: ConfigService)=>({
+            uri: configService.get<string>('MONGODB_URI'),
+        }),
+    }),
+    inside app.module and in imports array[]    

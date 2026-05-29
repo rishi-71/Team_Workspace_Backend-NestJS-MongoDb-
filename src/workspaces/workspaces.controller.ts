@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { WorkspacesService } from './workspaces.service';
 
 @Controller('workspaces')
 export class WorkspacesController {
     constructor(private readonly workspacesService : WorkspacesService){}
 
+    @Post()
+    async create(@Body() body: any){
+        return this.workspacesService.createWorkspace(body);
+    }
+
     @Get()
-    getMessage():string{
-        return this.workspacesService.getHelloMessage();
+    async findAll(){
+        return this.workspacesService.getAllWorkspaces();
     }
 }
