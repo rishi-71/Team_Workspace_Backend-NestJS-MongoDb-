@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { WorkspacesService } from './workspaces.service';
 import { CreateWorkspaceDto } from './dto/create-workspace.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('workspaces')
+@UseGuards(AuthGuard('jwt'))
 export class WorkspacesController {
   constructor(private readonly workspacesService: WorkspacesService) {}
 

@@ -26,3 +26,5 @@
 
 #Implemented Error handling filtering
     so as of now if any error happens form mongo side then it will display a raw error to user which can cause security risk so we created a scenerio where we change name to unique in schema , and we create a filter so user can see a proper message like what happend so we created a folder common inside src , in common we another folder filter in side filter folder a file named mongo-exception where we write logic to handle the same name error and in main.ts we added it 
+
+#Implemented jwt token generation and login logic     
