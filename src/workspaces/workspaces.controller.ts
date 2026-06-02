@@ -1,10 +1,13 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { WorkspacesService } from './workspaces.service';
 import { CreateWorkspaceDto } from './dto/create-workspace.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 
 @Controller('workspaces')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'), RolesGuard)
+//Remember first authGuard checks the token then roles guard checks for the roles
 export class WorkspacesController {
   constructor(private readonly workspacesService: WorkspacesService) {}
 
@@ -16,5 +19,13 @@ export class WorkspacesController {
   @Get()
   async findAll() {
     return this.workspacesService.getAllWorkspaces();
+  }
+
+  @Delete(':id')
+  @Roles('project_lead', 'faculty_lead')
+  remove(@Param('id') id: string) {
+    return {
+      message: `Workspace with id ${id} deleted successfully by authorized user!`,
+    };
   }
 }
