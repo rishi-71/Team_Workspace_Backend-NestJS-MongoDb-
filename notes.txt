@@ -36,4 +36,7 @@
 
 #Task Assigning to students(users)
     In this new feature we use an important concept of MongoDb which is Relationships in NoSQL, in mongoDb to link a task to any particular workspace and user we use ObjectId and ref .
-    firstly we create a folder in src calles tasks then in that folder we create schema of task , then we setup tasks module and at last we list tasksModule in imports of app.module        
+    firstly we create a folder in src calles tasks then in that folder we create schema of task , then we setup tasks module and at last we list tasksModule in imports of app.module
+    now we have to create the dto and services and controllers for the tasks in dto we specifies the types of fields and rules then in services we implements teh logic and then in controller we apply useGuards auth guard and roles guard so till now in our database a tasks is created with to whom it assigned and it belongs to which workspace but it shows in id format not name
+
+    after this we applied the update status feature in this only the student who are assigned to a particular task can update the particular task to check i used postman in postman url after tasks we have to pass the id of that particular taks and in authorization bearer token we have to pass the token which is obtained by the login of that particular assigned student only then the status of tasks can be updated
